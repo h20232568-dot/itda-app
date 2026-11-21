@@ -1,0 +1,12 @@
+{
+  "title": "잇다(It-Da)",
+  "icons": { "icon": "favicon.svg" },
+  "description": "This user-friendly app simplifies public transport navigation for seniors, providing real-time bus arrival updates and audio alerts for safe boarding and alighting.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
