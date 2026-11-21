@@ -142,7 +142,7 @@ export function SettingsScreen({
           {settings.guardian && (
             <div className="sms-preview" aria-label="문자 미리보기">
               <small>보내는 문자 예시</small>
-              <p>[잇다] 김상용 님이 오후 2:14에 명동입구 정류장에 도착하셨어요.</p>
+              <p>[길벗] 김상용 님이 오후 2:14에 명동입구 정류장에 도착하셨어요.</p>
             </div>
           )}
         </div>
@@ -193,7 +193,7 @@ export function SettingsScreen({
             </span>
             <span className="status-chip">허용됨</span>
           </div>
-          <p className="settings-note">권한은 휴대폰 설정 → 애플리케이션 → 잇다에서 바꿀 수 있어요.</p>
+          <p className="settings-note">권한은 휴대폰 설정 → 애플리케이션 → 길벗에서 바꿀 수 있어요.</p>
         </div>
 
         <h2 className="settings-section">개인정보 · 이동 기록</h2>

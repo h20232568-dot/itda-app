@@ -1,4 +1,4 @@
-/* 잇다 · 하단 메뉴, AI 도움, 최근 이동, 디자인 다듬기
+/* 길벗 · 하단 메뉴, AI 도움, 최근 이동, 디자인 다듬기
    index.css 다음에 불러와서 기본 스타일을 덮어쓴다. 글자는 14px 미만 금지. */
 
 /* ══ 하단 메뉴 ══════════════════════════ */
@@ -535,4 +535,20 @@
       0 10px 22px rgba(37, 99, 235, 0.38),
       0 0 0 14px rgba(37, 99, 235, 0);
   }
+}
+
+/* 하단 메뉴: 글자 없이 아이콘만 */
+.bottom-nav > button {
+  justify-content: center;
+  min-height: 64px;
+  padding: 0;
+}
+
+.nav-icon {
+  width: 60px;
+  height: 44px;
+}
+
+.nav-mic-circle {
+  margin-top: -26px;
 }

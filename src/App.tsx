@@ -630,7 +630,7 @@ export default function App() {
                   <div>
                     <strong>보호자 {GUARDIAN.name} 님께 도착을 알렸어요</strong>
                     <p className="sms-bubble">
-                      [잇다] 김상용 님이 {arrivedAt}에{" "}
+                      [길벗] 김상용 님이 {arrivedAt}에{" "}
                       {sim.passed === NEXT_AFTER_DEST ? `${stopName(NEXT_AFTER_DEST)} 정류장(명동 근처)` : `${ROUTE.destination} 정류장`}에 도착하셨어요.
                     </p>
                     <small>도착 장소와 시각만 보냈어요</small>
@@ -679,7 +679,7 @@ export default function App() {
         <div className="help-answer" aria-live="polite">
           {userSaid && <p className="user-bubble">“{userSaid}”</p>}
           <div className="help-answer-body">
-            <span className="assistant-mark">잇</span>
+            <span className="assistant-mark">길</span>
             <p>{helpAnswer}</p>
           </div>
         </div>
@@ -787,13 +787,14 @@ export default function App() {
                 type="button"
                 className={tab === t.id ? "is-active" : ""}
                 aria-current={tab === t.id ? "page" : undefined}
+                aria-label={t.label}
+                title={t.label}
                 onClick={() => setTab(t.id)}
               >
                 <span className="nav-icon">
                   <Icon name={t.icon} size={24} />
                   {t.id === "guide" && inJourney && <i className="nav-dot" />}
                 </span>
-                <span>{t.label}</span>
               </button>
             ))}
             <button
@@ -805,7 +806,6 @@ export default function App() {
               <span className="nav-mic-circle">
                 <Icon name="mic" size={30} />
               </span>
-              <span>말하기</span>
             </button>
             {TABS.slice(2).map((t) => (
               <button
@@ -813,12 +813,13 @@ export default function App() {
                 type="button"
                 className={tab === t.id ? "is-active" : ""}
                 aria-current={tab === t.id ? "page" : undefined}
+                aria-label={t.label}
+                title={t.label}
                 onClick={() => setTab(t.id)}
               >
                 <span className="nav-icon">
                   <Icon name={t.icon} size={24} />
                 </span>
-                <span>{t.label}</span>
               </button>
             ))}
           </nav>
