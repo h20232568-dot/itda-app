@@ -29,6 +29,9 @@ import {
 import { GUARDIAN, SettingsScreen, loadSettings, saveSettings, type AppSettings, type Trip } from "./Settings";
 import { listenOnce, setSpeechRate, setVoiceEnabled, speak, stopSpeaking, unlockAudio, vibrate, type ListenError } from "./feedback";
 
+const APP_ICON = `${import.meta.env.BASE_URL}icon-192.png`;
+const SPLASH_ICON = `${import.meta.env.BASE_URL}icon-512.png`;
+
 type Tab = "home" | "guide" | "help" | "settings";
 type VibeFlash = { id: number; label: string };
 
@@ -85,6 +88,19 @@ export default function App() {
   const [endConfirm, setEndConfirm] = useState(false);
   const [askSheet, setAskSheet] = useState(false);
   const [typed, setTyped] = useState("");
+  const [splash, setSplash] = useState<"show" | "leaving" | "gone">("show");
+
+  // 시작 화면: 잠깐 보여준 뒤 사라진다 (누르면 바로 넘어감)
+  useEffect(() => {
+    if (splash !== "show") return;
+    const t = window.setTimeout(() => setSplash("leaving"), 1400);
+    return () => window.clearTimeout(t);
+  }, [splash]);
+  useEffect(() => {
+    if (splash !== "leaving") return;
+    const t = window.setTimeout(() => setSplash("gone"), 450);
+    return () => window.clearTimeout(t);
+  }, [splash]);
   const prevSim = useRef<Sim>(sim);
   const stopListening = useRef<(() => void) | null>(null);
   const screenRef = useRef<HTMLDivElement | null>(null);
@@ -291,6 +307,10 @@ export default function App() {
 
   const homeScreen = (
     <section className="home">
+      <div className="brand">
+        <img src={APP_ICON} alt="" width={32} height={32} />
+        <span>길벗</span>
+      </div>
       {inJourney ? (
         <button type="button" className="journey-banner" onClick={() => setTab("guide")}>
           <span className="route-chip is-light">{ROUTE.bus}</span>
@@ -710,6 +730,13 @@ export default function App() {
   return (
     <div className="stage">
       <main className={`phone ${theme}`} aria-live="polite">
+        {splash !== "gone" && (
+          <div className={`splash ${splash === "leaving" ? "is-leaving" : ""}`} onClick={() => setSplash("leaving")} role="img" aria-label="길벗">
+            <img src={SPLASH_ICON} alt="" width={112} height={112} />
+            <strong>길벗</strong>
+            <p>휴대폰은 주머니에, 안내는 길벗이</p>
+          </div>
+        )}
         <div className="status-bar" aria-hidden="true">
           <span>9:41</span>
           <span className="status-icons">
